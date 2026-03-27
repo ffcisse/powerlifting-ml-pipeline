@@ -39,9 +39,10 @@ CREATE TABLE IF NOT EXISTS workout_sets (
     weight_amount REAL NOT NULL,
     rpe REAL,
     rir REAL, 
+    rest_time REAL, 
     completed_flag INTEGER DEFAULT 1, -- 1 is completed, 0 is failed
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (workout_id) REFERENCES workouts(workout_id),
+    FOREIGN KEY (workout_id) REFERENCES workout(workout_id),
     FOREIGN KEY (exercise_id) REFERENCES exercises(exercise_id)
 );
 

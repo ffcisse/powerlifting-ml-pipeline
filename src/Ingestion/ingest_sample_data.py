@@ -103,12 +103,12 @@ def insert_workout_sets(conn: sqlite3.Connection, workout_id: int) -> None:
     bench_id = get_exercise_id(conn, "Bench Press")
 
     sets_to_insert = [
-        (workout_id, squat_id, 1, 5, 100.0, 7.5, 2.5, 1),
-        (workout_id, squat_id, 2, 5, 105.0, 8.0, 2, 1),
-        (workout_id, squat_id, 3, 5, 107.5, 8.5, 1.5, 1),
-        (workout_id, bench_id, 1, 5, 60.0, 7.0, 3, 1),
-        (workout_id, bench_id, 2, 5, 62.5, 7.5, 2.5, 1),
-        (workout_id, bench_id, 3, 5, 65.0, 8.0, 2, 1),
+        (workout_id, squat_id, 1, 5, 100.0, 7.5, 2.5, 3, 1),
+        (workout_id, squat_id, 2, 5, 105.0, 8.0, 2, 3, 1),
+        (workout_id, squat_id, 3, 5, 107.5, 8.5, 1.5, 3, 1),
+        (workout_id, bench_id, 1, 5, 60.0, 7.0, 3, 2, 1),
+        (workout_id, bench_id, 2, 5, 62.5, 7.5, 2.5, 2, 1),
+        (workout_id, bench_id, 3, 5, 65.0, 8.0, 2, 2, 1),
     ]
 
     cursor.executemany(
@@ -121,9 +121,10 @@ def insert_workout_sets(conn: sqlite3.Connection, workout_id: int) -> None:
             weight_amount,
             rpe,
             rir, 
+            rest_time, 
             completed_flag
         )
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
         """,
         sets_to_insert
     )
